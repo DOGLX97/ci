@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <base href="<?php echo site_url()?>">
     <style>
         .warning{
             color:#f00;
@@ -12,7 +13,7 @@
     </style>
 </head>
 <body>
-    <form action="save" method="post">
+    <form action="welcome/save" method="post">
         <label>
             用户名 : <input type="text" name="username"> 
             <span class="warning">
