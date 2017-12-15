@@ -3,23 +3,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
 		$this->load->view('welcome_message');
+	}
+
+	public function login()
+	{
+		$this->load->view('login');
+	}
+
+	public function regist()
+	{
+		$this->load->view('regist');
+	}
+	public function save(){
+
+		//1.接收数据
+		$username=$this->input->post('username');
+		$pwd=$this->input->post('pwd');
+		$repwd=$this->input->post('repwd');		
+
+		$flag=TRUE;
+		$data=array();
+		if($username==''){
+			$flag=FALSE;
+			$data['err_name']="请输入用户名";
+		}
+		if($pwd!=$repwd){
+			$flag=FALSE;
+			$data['err_pwd']="两次密码不一致";			
+		}
+		if(!$flag){
+		 	$this->load->view('regist',$data);
+		}
+
+		//2.验证
+
+		//3.链接数据库
+
+		//4.加载views
 	}
 }
