@@ -24,6 +24,7 @@ class Welcome extends CI_Controller {
 		$pwd=$this->input->post('pwd');
 		$repwd=$this->input->post('repwd');		
 
+		//2.验证
 		$flag=TRUE;
 		$data=array();
 		if($username==''){
@@ -34,11 +35,18 @@ class Welcome extends CI_Controller {
 			$flag=FALSE;
 			$data['err_pwd']="两次密码不一致";			
 		}
-		if(!$flag){
-		 	$this->load->view('regist',$data);
+		if($flag){
+			$this->load->model('user_model');
+			$result=$this->user_model->save($username,$pwd);
+			if($result){
+				echo 'save success';
+			}else{
+				echo 'save fail';
+			}
+		}else{
+			$this->load->view('regist',$data);
 		}
-
-		//2.验证
+		
 
 		//3.链接数据库
 
